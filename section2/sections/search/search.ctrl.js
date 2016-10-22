@@ -1,23 +1,27 @@
 angular.module('app.core')
     .controller('SearchController', SearchController);
 
-SearchController.$inject = ['ShowService'];
+SearchController.$inject = ['ShowService', '$timeout'];
 
-function SearchController (ShowService) {
+function SearchController (ShowService, $timeout) {
     var vm = this;
 
+    vm.results = false;
+    vm.searching = false;
     vm.query = query;
 
 
 
     function query (query) {
+        vm.searching = true;
         ShowService.search(query).then(function (response) {
-            console.log(response);
+            vm.results = response;
+            $timeout(function () {
+                vm.searching = false;
+            }, 500);
         }).catch(function (error) {
 
         });
     };
 
-
-    vm.query("Game of Thrones");
 }
