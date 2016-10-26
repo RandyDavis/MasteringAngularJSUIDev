@@ -5,8 +5,13 @@ angular
     .module('app.services')
     .factory('StoreFactory', dataService);
 
-function dataService () {
+function dataService (localStorageService) {
     var _shows = [];
+
+    var ls = localStorageService.get('store');
+    if (ls !== null) {
+        _shows = ls;
+    }
 
     var service = {
         'addShow': addShow,
@@ -17,6 +22,7 @@ function dataService () {
 
     function addShow (data) {
         _shows.push(data);
+        save();
     }
 
     function getShow (id) {
@@ -49,6 +55,11 @@ function dataService () {
         if (found === true) {
             _shows.splice(idx, 1);
         }
+        save();
+    }
+    
+    function save () {
+        localStorageService.set('store', _shows);
     }
 
     return service;
