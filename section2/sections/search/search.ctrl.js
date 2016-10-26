@@ -1,15 +1,17 @@
 angular.module('app.core')
     .controller('SearchController', SearchController);
 
-SearchController.$inject = ['ShowService', '$timeout'];
+SearchController.$inject = ['ShowService', '$timeout', 'StoreFactory'];
 
-function SearchController (ShowService, $timeout) {
+function SearchController (ShowService, $timeout, StoreFactory) {
     var vm = this;
 
     vm.results = false;
     vm.searching = false;
     vm.query = query;
-
+    vm.trackShow = trackShow;
+    vm.unTrackShow = unTrackShow;
+    vm.hasShow = hasShow;
 
 
     function query (query) {
@@ -24,4 +26,15 @@ function SearchController (ShowService, $timeout) {
         });
     };
 
+    function trackShow (show) {
+        StoreFactory.addShow(show);
+    };
+
+    function unTrackShow (id) {
+        StoreFactory.removeShow(id);
+    };
+
+    function hasShow (id) {
+        return (StoreFactory.getShow(id) !== false);
+    };
 }
