@@ -9,10 +9,6 @@ function SearchController (ShowService, $timeout, StoreFactory) {
     vm.results = false;
     vm.searching = false;
     vm.query = query;
-    vm.trackShow = trackShow;
-    vm.unTrackShow = unTrackShow;
-    vm.hasShow = hasShow;
-
 
     function query (query) {
         vm.searching = true;
@@ -26,15 +22,5 @@ function SearchController (ShowService, $timeout, StoreFactory) {
         });
     };
 
-    function trackShow (show) {
-        StoreFactory.addShow(show);
-    };
 
-    function unTrackShow (id) {
-        StoreFactory.removeShow(id);
-    };
-
-    function hasShow (id) {
-        return (StoreFactory.getShow(id) !== false);
-    };
 }

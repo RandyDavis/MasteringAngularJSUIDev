@@ -2,7 +2,7 @@
  * Created by randy on 10/27/16.
  */
 angular.module('app.core')
-    .directive('showOverview', function () {
+    .directive('showOverview', function (StoreFactory) {
         return {
             templateUrl: 'components/show/show.tpl.html',
             restrict: 'E',
@@ -11,6 +11,17 @@ angular.module('app.core')
             },
             controller: function ($scope) {
 
+                $scope.trackShow = function (show) {
+                    StoreFactory.addShow(show);
+                };
+
+                $scope.unTrackShow = function (id) {
+                    StoreFactory.removeShow(id);
+                };
+
+                $scope.hasShow = function (id) {
+                    return (StoreFactory.getShow(id) !== false);
+                };
             }
         };
     });
