@@ -7,7 +7,8 @@ angular.module('app.core')
             templateUrl: 'components/show/show.tpl.html',
             restrict: 'E',
             scope: {
-                show: '='
+                show: '=',
+                showRating: '='
             },
             controller: function ($scope) {
 

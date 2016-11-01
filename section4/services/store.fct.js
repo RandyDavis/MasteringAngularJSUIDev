@@ -5,7 +5,7 @@ angular
     .module('app.services')
     .factory('StoreFactory', dataService);
 
-function dataService (localStorageService) {
+function dataService (localStorageService, $rootScope) {
     var _shows = [];
 
     var ls = localStorageService.get('store');
@@ -61,6 +61,12 @@ function dataService (localStorageService) {
     function save () {
         localStorageService.set('store', _shows);
     }
+
+    $rootScope.$watch(function () {
+        return _shows;
+    }, function () {
+        save();
+    }, true);
 
     return service;
 }

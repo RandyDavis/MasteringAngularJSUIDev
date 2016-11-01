@@ -60,3 +60,10 @@
     border-bottom: 3px solid #ba382c;
     text-shadow: 0 -1px 0 #8a3030;
 }
+
+.show-overview .rating-container {
+    margin-top: 10px;
+    font-size: 32px;
+    color: #fcd400;
+    text-shadow: 1px 1px 0 #ccab00;
+}
