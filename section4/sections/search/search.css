@@ -70,3 +70,7 @@
     font-weight: 300;
     line-height: 100px;
 }
+
+.pagination-container {
+    text-align: center;
+}
